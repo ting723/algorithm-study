@@ -1,4 +1,4 @@
-package zhanglw.study.algorithm.sort.binaryInsertion;
+package zhanglw.study.algorithm.sort;
 
 import com.alibaba.fastjson.JSON;
 
