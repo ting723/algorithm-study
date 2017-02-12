@@ -8,23 +8,46 @@ import zhanglw.study.algorithm.util.ArrayUtils;
  */
 public class BubbleSort {
 
-    public static int[] initArray = ArrayUtils.initIntegerArray(10,0,100);
+    public static int[] initArray = ArrayUtils.initIntegerArray(10, 0, 100);
+
+    public static int sortCount = 0;
 
     public static void sort(int[] arrs) {
-        System.out.println(JSON.toJSONString(initArray));
-        for (int i = 0; i < initArray.length; i++) {
-            for (int j = 1; j < initArray.length-i; j++) {
-              if(initArray[j]>initArray[j-1]){
-                 int temp = initArray[j-1];
-                 initArray[j-1]=initArray[j];
-                 initArray[j] = temp;
-              }
+        if (arrs == null || arrs.length == 0) return;
+        // 外循环
+        for (int i = 0; i < arrs.length; i++) {
+            // 内循环
+            // 从0到1开始比较,将最大值排到最后
+            // 由于每次都会将最大值排到最后,可以在下一次比较时,将已排好的最大值排除,以减少比较次数
+            System.out.println(i + ": " + JSON.toJSONString(arrs));
+//            for (int j = 1; j < arrs.length - i; j++) {
+//                sortCount++;
+//                if (arrs[j] < arrs[j - 1]) {
+//                    swap(arrs, j, j - 1);
+//                }
+//            }
+
+            // 第二种方式:内循环
+            // 从arrs.length到i开始比较,将最小值排到最前
+            // 由于每次都会将最小值排到最后,可以在下一次比较时,将已排好的最小值排除,以减少比较次数
+            for (int j = arrs.length-1; j >= i+1; j--) {
+                sortCount++;
+                if(arrs[j]<arrs[j-1]){
+                    swap(arrs,j,j-1);
+                }
             }
         }
+    }
+
+    private static void swap(int[] arrs, int j, int i) {
+        int temp = arrs[j];
+        arrs[j] = arrs[i];
+        arrs[i] = temp;
     }
 
     public static void main(String[] args) {
         sort(initArray);
         System.out.println(JSON.toJSONString(initArray));
+        System.out.println("Recycle count:"+sortCount);
     }
 }
