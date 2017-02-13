@@ -3,6 +3,8 @@ package zhanglw.study.algorithm.sort;
 import com.alibaba.fastjson.JSON;
 import zhanglw.study.algorithm.util.ArrayUtils;
 
+import static zhanglw.study.algorithm.util.ArrayUtils.swap;
+
 /**
  * Created by zhanglw on 2017/1/5.
  */
@@ -39,11 +41,6 @@ public class BubbleSort {
         }
     }
 
-    private static void swap(int[] arrs, int j, int i) {
-        int temp = arrs[j];
-        arrs[j] = arrs[i];
-        arrs[i] = temp;
-    }
 
     public static void main(String[] args) {
         sort(initArray);

@@ -48,4 +48,12 @@ public class ArrayUtils {
         int[] arrs = initIntegerArray(8, 5, 53);
         System.out.println(JSON.toJSONString(arrs));
     }
+
+
+
+    public static void swap(int[] arrs, int j, int i) {
+        int temp = arrs[j];
+        arrs[j] = arrs[i];
+        arrs[i] = temp;
+    }
 }
