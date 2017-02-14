@@ -19,7 +19,8 @@ public class InsertionSort {
     public static void main(String[] args) {
         InsertionSort insertionSort = new InsertionSort();
 //        insertionSort.exec();
-        insertionSort.sort_easy(insertionSort.arr);
+//        insertionSort.sort_easy(insertionSort.arr);
+        InsertionSort.sort_while(insertionSort.arr);
         System.out.println(JSON.toJSONString(insertionSort.arr));
     }
 
@@ -48,6 +49,18 @@ public class InsertionSort {
                     arr[j] = temp;
                 }
             }
+        }
+    }
+
+    public static void sort_while(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int key = arr[i];
+            int j = i;
+            while (j > 0 && key < arr[j - 1]) {
+                arr[j] = arr[j - 1];
+                j--;
+            }
+            arr[j] = key;
         }
     }
 
