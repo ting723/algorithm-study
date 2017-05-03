@@ -34,12 +34,12 @@ public class QuickSort {
             quickSort(a, j + 1, high);
         }
 
-        System.out.println("--------");
+        System.out.println("low:" + low + "~~high:" + high + "--------");
 
     }
 
     public static void main(String[] args) {
-        int[] a = ArrayUtils.initIntegerArray(10, 2, 100);
+        int[] a = ArrayUtils.initIntegerArray(5, 2, 100);
         System.out.println(JSON.toJSONString(a));
         System.out.println("\n");
         new QuickSort().quickSort(a, 0, a.length - 1);
