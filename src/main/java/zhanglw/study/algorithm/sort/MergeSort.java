@@ -4,10 +4,11 @@ package zhanglw.study.algorithm.sort;
  * Created by zhanglianwei on 2017/5/3.
  */
 public class MergeSort {
-    private static int[] a = {3, 7, 8, 4, 2, 5, 1};
+    private static int[] a = {3, 7, 8, 4, 2, 5, 1, 0};
 
     public static void main(String[] args) {
         sort(a, 0, a.length - 1);
+//        sort_iteration(a);
         for (int i = 0; i < a.length; i++) {
             System.out.println(a[i]);
         }
@@ -43,8 +44,43 @@ public class MergeSort {
             tempArr[k++] = a[j++];
         }
         // 复制的当前数组
-        for (int m = 0; left <= right; left++, m++) {
-            a[left] = tempArr[m];
+        for (int m = 0; m < tempArr.length; m++) {
+            a[left + m] = tempArr[m];
+        }
+    }
+
+    private static void sort_iteration(int[] a) {
+
+        for (int step = 1; step < 2 * a.length; step *= 2) {
+            for (int s = 0; s < a.length; s += 2 * step) {
+                int low = s;
+                int high = s + 2 * step - 1;
+                high = high > (a.length - 1) ? (a.length - 1) : high;
+                int mid = (low + high) >> 1;
+
+                int i = s;
+                int j = mid + 1;
+                int k = 0;
+
+                int[] tempArr = new int[high - low + 1];
+                if (tempArr.length < 2) continue;
+                while (i <= mid && j <= high) {
+                    tempArr[k++] = (a[i] < a[j] ? a[i++] : a[j++]);
+                }
+
+                while (i <= mid) {
+                    tempArr[k++] = a[i++];
+                }
+
+                while (j <= high) {
+                    tempArr[k++] = a[j++];
+                }
+
+                for (int m = 0; low <= high; low++, m++) {
+                    a[low] = tempArr[m];
+                }
+
+            }
         }
     }
 }
